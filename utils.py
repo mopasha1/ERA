@@ -95,14 +95,6 @@ math.sin( math.radians( lat ) ) )
         
         return sorted(nearest, key=lambda x: x[1])
 
-# def get_category(transcription):
-#     concatenated_text = '\n'.join([f"{item[0]}: {item[1]}" if item[0] != 'You.' else item[1] for item in transcription])
-#     co = cohere.Client('9gTWsgGsGUoSSKzUvLuZdcuEtuBO2CIhiG9s17nU') # This is your trial API key
-#     response = co.classify(
-#     model='2196d10d-e411-417d-b342-2882c65248f5-ft',
-#     inputs=[concatenated_text ],
-#     )
-#     return(response.classifications[0].prediction)
 
 def get_category(transcription_id):
     category = question(transcription_id, q_format("Determine how severe the emergency is, with high level destruction being 10 while a very small incident is 1", "One of the following: Fire, Law and Order, Medical"))
