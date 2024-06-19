@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Emergency Response System</title>
+    <!-- Include Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #000;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #ff9900;
+        }
+
+        p {
+            margin: 0;
+            color: #000;
+            padding: 10px 0;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .feature {
+            background-color: rgba(0, 123, 255, 0.8);
+            color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .feature h2 {
+            color: #ffcc00;
+        }
+
+        a.button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for file upload input */
+        input[type="file"] {
+            display: none;
+        }
+
+        label.upload-button {
+            display: block;
+            background-color: #007bff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        label.upload-button:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styling for GitHub link */
+        .github-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .github-link a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .github-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Center the titles and buttons */
+        .center-content {
+            text-align: center;
+        }
+
+        /* Center the spinner and text */
+        #spinnerDiv {
+            text-align: center;
+        }
+
+        /* Progress bar styling */
+        .progress {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container center-content">
+        <h1>Emergency Response System</h1>
+    </div>
+
+    <div class="container center-content">
+        <h1>Upload an Audio File</h1>
+        <form action="/upload" method="POST" enctype="multipart/form-data" onsubmit="showSpinner()">
+            <label class="upload-button" for="audio_file">Choose an audio file</label>
+            <input type="file" name="audio_file" id="audio_file" accept=".mp3, .wav, .ogg, .flac" required>
+            <br><br>
+            <!-- Add a div to display the yellow spinner and text -->
+            <div class="text-center" id="spinnerDiv" style="display: none;">
+                <div class="spinner-border text-warning"></div>
+                <p class="text-warning">Performing AI powered analysis</p>
+            </div>
+            <!-- Add a progress bar -->
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" id="uploadProgress">0%</div>
+            </div>
+            <button type="submit" id="uploadButton">Upload</button>
+        </form>
+    </div>
+
+
+    <script>
+        function showSpinner() {
+            // Hide the "Upload" button and show the spinner and text
+            document.getElementById("uploadButton").style.display = "none";
+            document.getElementById("spinnerDiv").style.display = "block";
+            // Simulate progress bar
+            simulateProgressBar();
+        }
+
+        function simulateProgressBar() {
+            var progressBar = document.getElementById("uploadProgress");
+            var width = 0;
+            var interval = setInterval(function() {
+                if (width >= 90) { // Stop at 90%
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    progressBar.style.width = width + "%";
+                    progressBar.innerHTML = width + "%";
+                }
+            }, 300); // Adjust the interval timing here
+        }
+    </script>
+</body>
+
+</html>
